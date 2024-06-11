@@ -1,42 +1,28 @@
 import { Request, Response } from 'express';
-import httpStatus from 'http-status';
 import { userServices } from './user.service';
+import { sendResponse } from '../../utils/sendResponse';
+import { catchAsync } from '../../utils/catchAsync';
 
 // signup controller
-const signup = async (req: Request, res: Response) => {
-  try {
-    const result = await userServices.createUserFormDb(req.body);
-    res.status(httpStatus.OK).json({
-      success: true,
-      statusCode: 200,
-      message: 'User registered successfully',
-      data: result,
-    });
-  } catch (error) {
-    res.status(500).json({
-      success: true,
-      message: 'User sign up failed',
-      error,
-    });
-  }
-};
+const signup = catchAsync(async (req: Request, res: Response) => {
+  const result = await userServices.createUserFormDb(req.body);
+  sendResponse(res, {
+    success: true,
+    statusCode: 200,
+    message: 'User registered successfully',
+    data: result,
+  });
+});
 // get all users controller
-const getAllUsers = async (req: Request, res: Response) => {
-  try {
-    const result = await userServices.gelAllUsersFromDb();
-    res.status(httpStatus.OK).json({
-      success: true,
-      message: 'User retrive successfully',
-      data: result,
-    });
-  } catch (error) {
-    res.status(500).json({
-      success: true,
-      message: 'User retrive failed',
-      error,
-    });
-  }
-};
+const getAllUsers = catchAsync(async (req: Request, res: Response) => {
+  const result = await userServices.gelAllUsersFromDb();
+  sendResponse(res, {
+    success: true,
+    statusCode: 200,
+    message: 'User retrive successfully',
+    data: result,
+  });
+});
 export const userController = {
   signup,
   getAllUsers,
