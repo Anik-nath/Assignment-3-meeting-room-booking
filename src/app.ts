@@ -1,7 +1,8 @@
 import express, { Request, Response } from 'express';
 import cors from 'cors';
 import { router } from './App/routes';
-import httpStatus from 'http-status';
+import { notFoundRoute } from './App/middleware/notfoundRoute';
+
 const app = express();
 
 //parser
@@ -13,15 +14,10 @@ app.use('/api', router);
 
 // test route
 const test = (req: Request, res: Response) => {
-  res.send('Assignment-3 Meeting-room-booking system');
+  res.send('Assignment-3 Meeting-room-booking system Running');
 };
 app.get('/', test);
 
 // 404 route
-app.get('*', (req: Request, res: Response) => {
-  res.status(httpStatus.NOT_FOUND).json({
-    success: false,
-    message: 'Route not found',
-  });
-});
+app.get('*', notFoundRoute);
 export default app;
