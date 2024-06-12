@@ -12,8 +12,9 @@ const userValidationSchema = z.object({
       }),
     email: z.string().email('Invalid email format'),
     password: z
-      .string()
-      .max(20, { message: 'Password can not be more than 20 characters' }),
+      .string({ invalid_type_error: 'Password must be string' })
+      .max(20, { message: 'Password can not be more than 20 characters' })
+      .optional(),
     phone: z.string().min(1, 'Phone number is required'),
     role: z.enum(['admin', 'user']),
     address: z.string().min(1, 'Address is required'),

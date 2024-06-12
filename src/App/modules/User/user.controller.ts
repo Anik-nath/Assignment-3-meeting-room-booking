@@ -5,7 +5,9 @@ import { catchAsync } from '../../utils/catchAsync';
 
 // signup controller
 const signup = catchAsync(async (req: Request, res: Response) => {
-  const result = await userServices.createUserFormDb(req.body);
+  const payload = req.body;
+
+  const result = await userServices.createUserFormDb(payload);
   sendResponse(res, {
     success: true,
     statusCode: 200,
@@ -13,6 +15,19 @@ const signup = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
+
+// login user controller
+const loginUser = catchAsync(async (req: Request, res: Response) => {
+  const result = await userServices.loginUserIntoDb();
+  sendResponse(res, {
+    success: true,
+    statusCode: 200,
+    message: 'User login successfully',
+    data: result,
+  });
+  return result;
+});
+
 // get all users controller
 const getAllUsers = catchAsync(async (req: Request, res: Response) => {
   const result = await userServices.gelAllUsersFromDb();
@@ -26,4 +41,5 @@ const getAllUsers = catchAsync(async (req: Request, res: Response) => {
 export const userController = {
   signup,
   getAllUsers,
+  loginUser,
 };
