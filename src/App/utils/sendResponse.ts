@@ -4,6 +4,7 @@ type TResponse<T> = {
   success: boolean;
   statusCode: number;
   message?: string;
+  token?: string;
   data: T;
 };
 
@@ -12,6 +13,7 @@ export const sendResponse = <T>(res: Response, payload: TResponse<T>) => {
     success: payload.success,
     statusCode: payload.statusCode,
     message: payload.message,
+    token: payload.token,
     data: payload.data,
   });
 };
