@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express';
 import cors from 'cors';
 import { router } from './App/routes';
 import { notFoundRoute } from './App/middleware/notfoundRoute';
+import { globalErrorHandler } from './App/middleware/globalErrorHandler';
 
 const app = express();
 
@@ -17,7 +18,8 @@ const test = (req: Request, res: Response) => {
   res.send('Assignment-3 Meeting-room-booking system Running');
 };
 app.get('/', test);
-
+// globar error handler
+app.use(globalErrorHandler);
 // 404 route
 app.get('*', notFoundRoute);
 export default app;

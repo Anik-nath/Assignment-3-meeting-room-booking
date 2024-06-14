@@ -23,6 +23,10 @@ const allModuleRoutes = [
     path: '/bookings',
     route: bookingRoutes,
   },
+  {
+    path: '/my-bookings',
+    route: bookingRoutes,
+  },
 ];
 
 allModuleRoutes.map((ele) => router.use(ele.path, ele.route));

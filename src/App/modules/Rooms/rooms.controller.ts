@@ -14,6 +14,14 @@ const createMeetingRooom = catchAsync(async (req: Request, res: Response) => {
 });
 const getAllMeetingRooms = catchAsync(async (req: Request, res: Response) => {
   const result = await MeetingRoomServices.getAllRooms();
+  if (result.length === 0) {
+    sendResponse(res, {
+      success: false,
+      statusCode: 404,
+      message: 'No Data Found',
+      data: result,
+    });
+  }
   sendResponse(res, {
     success: true,
     statusCode: 200,

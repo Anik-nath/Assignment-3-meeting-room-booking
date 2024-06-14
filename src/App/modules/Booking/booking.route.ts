@@ -27,6 +27,6 @@ router.put(
   bookingController.updateBooking,
 );
 // /my-bookings(GET)
-router.get('/my-booking');
+router.get('/', bookingController.getMybookings);
 
 export const bookingRoutes = router;

@@ -15,7 +15,14 @@ const booking = catchAsync(async (req: Request, res: Response) => {
 });
 const getAllbookings = catchAsync(async (req: Request, res: Response) => {
   const result = await bookingServices.getAllBookingFromDb();
-
+  if (result.length === 0) {
+    sendResponse(res, {
+      success: false,
+      statusCode: 404,
+      message: 'No Data Found',
+      data: result,
+    });
+  }
   sendResponse(res, {
     success: true,
     statusCode: 200,
@@ -23,10 +30,10 @@ const getAllbookings = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
+
 const getSinglebookings = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
   const result = await bookingServices.getSingleBookingFromDb(id);
-
   sendResponse(res, {
     success: true,
     statusCode: 200,
@@ -54,10 +61,21 @@ const deleteBooking = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
+
+const getMybookings = catchAsync(async (req: Request, res: Response) => {
+  const result = await bookingServices.getMyBookingFromDb();
+  sendResponse(res, {
+    success: true,
+    statusCode: 200,
+    message: 'Bookings retrieved successfully',
+    data: result,
+  });
+});
 export const bookingController = {
   booking,
   getAllbookings,
   getSinglebookings,
   updateBooking,
   deleteBooking,
+  getMybookings,
 };

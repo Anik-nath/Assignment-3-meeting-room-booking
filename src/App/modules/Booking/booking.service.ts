@@ -21,7 +21,6 @@ const createBooking = async (payload: TBooking) => {
   return result;
 };
 // get all the bookings
-
 const getAllBookingFromDb = async () => {
   const result = await Booking.find()
     .populate('room')
@@ -29,6 +28,7 @@ const getAllBookingFromDb = async () => {
     .populate('user');
   return result;
 };
+
 // get single booking
 const getSingleBookingFromDb = async (id: string) => {
   const result = await Booking.find({ _id: id })
@@ -53,6 +53,13 @@ const deleteBookingFromDB = async (id: string) => {
   );
   return result;
 };
+const getMyBookingFromDb = async () => {
+  const result = await Booking.find()
+    .populate('room')
+    .populate('slots')
+    .populate('user');
+  return result;
+};
 
 export const bookingServices = {
   createBooking,
@@ -60,4 +67,5 @@ export const bookingServices = {
   getSingleBookingFromDb,
   updateBookingFromDB,
   deleteBookingFromDB,
+  getMyBookingFromDb,
 };

@@ -19,6 +19,14 @@ const signup = catchAsync(async (req: Request, res: Response) => {
 // get all users controller
 const getAllUsers = catchAsync(async (req: Request, res: Response) => {
   const result = await userServices.gelAllUsersFromDb();
+  if (result.length === 0) {
+    sendResponse(res, {
+      success: false,
+      statusCode: 404,
+      message: 'No Data Found',
+      data: result,
+    });
+  }
   sendResponse(res, {
     success: true,
     statusCode: 200,
