@@ -1,6 +1,9 @@
 import express from 'express';
 import { validateRequest } from '../../middleware/validateRequest';
-import { bookingValidationSchema } from './booking.Validate';
+import {
+  UpdateBookingValidationSchema,
+  bookingValidationSchema,
+} from './booking.Validate';
 import { bookingController } from './booking.controller';
 
 const router = express.Router();
@@ -16,9 +19,13 @@ router.get('/', bookingController.getAllbookings);
 // get single
 router.get('/:id', bookingController.getSinglebookings);
 // delete booking
-router.delete('/:id');
+router.delete('/:id', bookingController.deleteBooking);
 // update booking
-router.put('/:id');
+router.put(
+  '/:id',
+  validateRequest(UpdateBookingValidationSchema),
+  bookingController.updateBooking,
+);
 // /my-bookings(GET)
 router.get('/my-booking');
 

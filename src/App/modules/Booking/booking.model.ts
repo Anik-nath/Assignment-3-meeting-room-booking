@@ -1,6 +1,5 @@
 import { Schema, model } from 'mongoose';
 import { TBooking } from './booking.interface';
-
 export const bookingSchema = new Schema<TBooking>(
   {
     date: {
@@ -20,6 +19,18 @@ export const bookingSchema = new Schema<TBooking>(
       type: Schema.Types.ObjectId,
       ref: 'User',
       required: true,
+    },
+    totalAmount: {
+      type: Number,
+      default: 0,
+    },
+    isConfirmed: {
+      type: String,
+      default: 'unconfirmed',
+    },
+    isDeleted: {
+      type: Boolean,
+      default: false,
     },
   },
   { versionKey: false },
