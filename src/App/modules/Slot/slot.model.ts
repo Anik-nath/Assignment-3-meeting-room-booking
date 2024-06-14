@@ -9,7 +9,7 @@ export const slotSchema = new Schema<TSlot>(
       required: true,
     },
     date: {
-      type: Date,
+      type: String,
       required: true,
     },
     startTime: {

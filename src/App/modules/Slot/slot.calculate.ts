@@ -8,6 +8,9 @@ export const calculateSlots = (body: TSlot, slotDuration: number): TSlot[] => {
   const totalDuration = endMinutes - startMinutes;
   const numberOfSlots = totalDuration / slotDuration;
 
+  const convertedDate = new Date(body.date).toISOString().split('T')[0];
+  // console.log(convertedDate);
+
   const slots: TSlot[] = [];
   for (let i = 0; i < numberOfSlots; i++) {
     const calculateSlotStartMinutes = startMinutes + i * slotDuration;
@@ -15,7 +18,7 @@ export const calculateSlots = (body: TSlot, slotDuration: number): TSlot[] => {
 
     slots.push({
       room: new Types.ObjectId(body.room),
-      date: new Date(body.date),
+      date: convertedDate,
       startTime: minutesToTime(calculateSlotStartMinutes),
       endTime: minutesToTime(calculateSlotEndMinutes),
       isBooked: false,

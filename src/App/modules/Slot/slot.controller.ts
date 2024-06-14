@@ -14,10 +14,11 @@ const createSlots = catchAsync(async (req: Request, res: Response) => {
   sendResponse(res, {
     success: true,
     statusCode: 200,
-    message: 'slots are created',
+    message: 'Slots created successfully',
     data: result,
   });
 });
+
 
 export const slotsController = {
   createSlots,
