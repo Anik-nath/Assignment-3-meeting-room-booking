@@ -19,7 +19,31 @@ const createSlots = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const getAvailableSlots = catchAsync(async (req: Request, res: Response) => {
+  const { date, roomId } = req.query;
+  if (date && roomId) {
+    const result = await slotsServices.getAvailableSlotFromDb(
+      date as string,
+      roomId as string,
+    );
+    sendResponse(res, {
+      success: true,
+      statusCode: 200,
+      message: 'Available slots retrieved successfully',
+      data: result,
+    });
+  } else {
+    const result = await slotsServices.getAllSlotFromDb();
+    sendResponse(res, {
+      success: true,
+      statusCode: 200,
+      message: 'Available slots retrieved successfully',
+      data: result,
+    });
+  }
+});
 
 export const slotsController = {
   createSlots,
+  getAvailableSlots,
 };
