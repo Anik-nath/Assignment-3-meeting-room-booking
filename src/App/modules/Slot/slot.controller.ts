@@ -26,6 +26,14 @@ const getAvailableSlots = catchAsync(async (req: Request, res: Response) => {
       date as string,
       roomId as string,
     );
+    if (result.length === 0) {
+      sendResponse(res, {
+        success: false,
+        statusCode: 404,
+        message: 'No Data Found',
+        data: result,
+      });
+    }
     sendResponse(res, {
       success: true,
       statusCode: 200,
@@ -34,6 +42,14 @@ const getAvailableSlots = catchAsync(async (req: Request, res: Response) => {
     });
   } else {
     const result = await slotsServices.getAllSlotFromDb();
+    if (result.length === 0) {
+      sendResponse(res, {
+        success: false,
+        statusCode: 404,
+        message: 'No Data Found',
+        data: result,
+      });
+    }
     sendResponse(res, {
       success: true,
       statusCode: 200,

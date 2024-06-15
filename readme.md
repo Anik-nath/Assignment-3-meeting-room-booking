@@ -8,6 +8,7 @@
 - [Features](#features)
 - [Technology Stack](#technology-stack)
 - [Setup Instructions](#setup-instructions)
+- [All routes](#all-routes)
 
 ## About the Project
 
@@ -32,13 +33,13 @@ The goal of this project is to create a web application that will make it easier
 
 ### Validation and Error Handling
 
-- **Feature 1**: Validation: Ensure non-overlapping slots, valid room details, and user inputs.
-- **Feature 2**: Error Handling: Provide informative error messages for conflicts and validation issues.
+- **Validation**: : Ensure non-overlapping slots, valid room details, and user inputs.
+- **Error Handling**: Provide informative error messages for conflicts and validation issues.
 
 ### Security Features
 
-- **Feature 1**: Authentication: User login, registration, token-based session management.
-- **Feature 2**: Authorization: Role-based access control for admin/user actions.
+- **Authentication**: User login, registration, token-based session management.
+- **Authorization**: Role-based access control for admin/user actions.
 
 ### Additional Features
 
@@ -108,7 +109,7 @@ The goal of this project is to create a web application that will make it easier
    ```
    http://localhost:5000/
    ```
-6. **All the routes to show**
+6. **All routes to show**
    - /api/auth/signup
    - /api/auth/login
    - /api/rooms (for create rooms and fetch all rooms)
