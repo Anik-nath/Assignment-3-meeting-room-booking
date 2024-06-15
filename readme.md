@@ -1,6 +1,6 @@
 # Meeting-room-booking-system
 
-[Live URL](.....upcoming.....)
+[Live URL](https://assignment-3-two-tawny.vercel.app/)
 
 ## Table of Contents
 
@@ -121,14 +121,16 @@ The goal of this project is to create a web application that will make it easier
    ```
    http://localhost:5000/
    ```
-6. **All routes to show**
-   - /api/auth/signup
-   - /api/auth/login
-   - /api/rooms (for create rooms and fetch all rooms)
-   - /api/rooms/:id (Fetch specific booking data , Delete and update)
-   - /api/slots
-   - /api/slots/availability
-   - /api/slots/availability?date=2024-06-15&roomId=60d9c4e4f3b4b544b8b8d1c5
-   - /api/bookings (give booking and fetch all bookings)
-   - /api/my-bookings
-   - /api/bookings/:id (for update and delete)
+
+## All routes to show
+
+- /api/auth/signup
+- /api/auth/login
+- /api/rooms (for create rooms and fetch all rooms)
+- /api/rooms/:id (Fetch specific booking data , Delete and update)
+- /api/slots
+- /api/slots/availability
+- /api/slots/availability?date=2024-06-15&roomId=60d9c4e4f3b4b544b8b8d1c5
+- /api/bookings (give booking and fetch all bookings)
+- /api/my-bookings
+- /api/bookings/:id (for update and delete)
