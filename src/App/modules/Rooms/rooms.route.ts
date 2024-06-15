@@ -11,13 +11,14 @@ const router = express.Router();
 // create room
 router.post(
   '/',
+  auth(USER_ROLE.admin),
   validateRequest(meetingRoomValidation.meetingRoomValidationSchema),
   MeetingRoomControllers.createMeetingRooom,
 );
 // get all rooms
 router.get(
   '/',
-  auth(USER_ROLE.admin),
+  auth(USER_ROLE.admin, USER_ROLE.user),
   MeetingRoomControllers.getAllMeetingRooms,
 );
 // get single rooms
@@ -25,12 +26,17 @@ router.get('/:roomId', MeetingRoomControllers.getSingleMeetingRoom);
 // update room
 router.put(
   '/:roomId',
+  auth(USER_ROLE.admin),
   validateRequest(
     meetingRoomUpdateValidation.meetingRoomUpdateValidationSchema,
   ),
   MeetingRoomControllers.updateMeetingRoom,
 );
 // delete room
-router.delete('/:roomId', MeetingRoomControllers.deleteMeetingRoom);
+router.delete(
+  '/:roomId',
+  auth(USER_ROLE.admin),
+  MeetingRoomControllers.deleteMeetingRoom,
+);
 
 export const meetingRoomRoutes = router;

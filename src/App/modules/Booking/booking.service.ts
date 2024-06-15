@@ -5,6 +5,10 @@ import { TBooking } from './booking.interface';
 import Booking from './booking.model';
 
 const createBooking = async (payload: TBooking) => {
+  const userExists = await User.exists({ _id: payload.user });
+  if (!userExists) {
+    throw new Error('You are not authorized!');
+  }
   const booking = await Booking.create(payload);
   //save total amount
   const room = await MeetingRoom.findById(payload.room);
@@ -17,8 +21,8 @@ const createBooking = async (payload: TBooking) => {
   await Slot.updateMany({ _id: { $in: payload.slots } }, { isBooked: true });
 
   const result = await (
-    await (await booking.populate('slots')).populate('user')
-  ).populate('room');
+    await (await booking.populate('slots')).populate('room')
+  ).populate({ path: 'user', select: '-password' });
   return result;
 };
 // get all the bookings
@@ -62,7 +66,7 @@ const getMyBookingFromDb = async (userEmail: string) => {
   }
   const result = await Booking.find({ user: user._id })
     .populate('room')
-    .populate('slots')
+    .populate('slots');
 
   return result;
 };
