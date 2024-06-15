@@ -101,8 +101,15 @@ The goal of this project is to create a web application that will make it easier
    - Edit the .env file.
    - Example:
    ```
+   NODE_ENV=
    PORT=5000
-   DATABASEURL=[your mongodb connectiong url here]
+   DATABASEURL=
+   DEFAULT_PASSWORD=
+   BCRYPT_SALT_ROUNDS=
+   JWT_ACCESS_SECRET =
+   JWT_ACCESS_EXPIRES_IN=
+   JWT_REFRESH_TOKEN=
+   JWT_ACCESS_EXPIRES_IN=
    ```
    - Ensure MongoDB is running locally
 4. **Run**
