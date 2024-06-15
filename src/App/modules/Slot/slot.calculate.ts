@@ -13,6 +13,9 @@ export const calculateSlots = (
   const convertedDate = new Date(payload.date).toISOString().split('T')[0];
   // console.log(convertedDate);
 
+  if (startMinutes >= endMinutes) {
+    throw new Error('Start time must be before End time');
+  }
   const slots: TSlot[] = [];
   for (let i = 0; i < numberOfSlots; i++) {
     const calculateSlotStartMinutes = startMinutes + i * slotDuration;

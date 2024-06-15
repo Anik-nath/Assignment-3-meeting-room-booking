@@ -20,7 +20,11 @@ router.post(
 // all bookings
 router.get('/', auth(USER_ROLE.admin), bookingController.getAllbookings);
 // get single
-router.get('/:id', bookingController.getSinglebookings);
+router.get(
+  '/:id',
+  auth(USER_ROLE.admin, USER_ROLE.user),
+  bookingController.getSinglebookings,
+);
 // delete booking
 router.delete('/:id', auth(USER_ROLE.admin), bookingController.deleteBooking);
 // update booking

@@ -22,7 +22,11 @@ router.get(
   MeetingRoomControllers.getAllMeetingRooms,
 );
 // get single rooms
-router.get('/:roomId', MeetingRoomControllers.getSingleMeetingRoom);
+router.get(
+  '/:roomId',
+  auth(USER_ROLE.admin, USER_ROLE.user),
+  MeetingRoomControllers.getSingleMeetingRoom,
+);
 // update room
 router.put(
   '/:roomId',

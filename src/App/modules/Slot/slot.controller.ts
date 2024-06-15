@@ -9,7 +9,6 @@ const createSlots = catchAsync(async (req: Request, res: Response) => {
   const slotDuration = 60;
   const slots: TSlot[] = calculateSlots(req.body, slotDuration);
   //   console.log(slots)
-
   const result = await slotsServices.createSlotsIntoDb(slots);
   sendResponse(res, {
     success: true,

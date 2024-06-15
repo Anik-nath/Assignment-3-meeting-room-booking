@@ -45,7 +45,7 @@ const updateMeetingRoom = catchAsync(async (req: Request, res: Response) => {
   sendResponse(res, {
     success: true,
     statusCode: 200,
-    message: 'Room deleted successfully',
+    message: 'Room updated successfully',
     data: result,
   });
 });
