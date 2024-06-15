@@ -9,8 +9,7 @@ export const calculateSlots = (
   const startMinutes = timeToMinutes(payload.startTime);
   const endMinutes = timeToMinutes(payload.endTime);
   const totalDuration = endMinutes - startMinutes;
-  const numberOfSlots = totalDuration / slotDuration;
-
+  const numberOfSlots = Math.floor(totalDuration / slotDuration);
   const convertedDate = new Date(payload.date).toISOString().split('T')[0];
   // console.log(convertedDate);
 
