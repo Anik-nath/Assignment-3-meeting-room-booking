@@ -65,6 +65,14 @@ const deleteBooking = catchAsync(async (req: Request, res: Response) => {
 const getMybookings = catchAsync(async (req: Request, res: Response) => {
   const userEmail = req.user?.userEmail;
   const result = await bookingServices.getMyBookingFromDb(userEmail);
+  if (result.length === 0) {
+    sendResponse(res, {
+      success: false,
+      statusCode: 404,
+      message: 'No Data Found',
+      data: result,
+    });
+  }
   sendResponse(res, {
     success: true,
     statusCode: 200,

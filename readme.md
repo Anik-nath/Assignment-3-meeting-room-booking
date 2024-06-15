@@ -1,4 +1,4 @@
-# Project Name: Meeting-room-booking-system
+# Meeting-room-booking-system
 
 [Live URL](.....upcoming.....)
 
@@ -11,13 +11,41 @@
 
 ## About the Project
 
-.....upcoming.....
+The goal of this project is to create a web application that will make it easier for co-working space administrators and users to handle meeting room reservations.
 
-## Features List
+## Features
 
-- **Feature 1**: .....upcoming......
-- **Feature 2**: .....upcoming......
-- **Feature 3**: .....upcoming......
+### Admin Features
+
+- **Room Management**: Create, update, delete rooms with details (name, number, floor, capacity, price, amenities)
+- **Slot Management**: Create, update, delete time slots (date, start time, end time) for rooms.
+- **Booking Management:**: View, update, cancel all bookings.
+- **User Management**: View, create, update, delete user profiles and manage roles.
+
+### User Features
+
+- **Booking Creation**:
+  - Browse rooms and view available slots.
+  - Create bookings by selecting time slots and rooms.
+  - Auto-calculate total amount based on slots.
+- **Booking Management**: View, update, cancel user bookings.
+
+### Validation and Error Handling
+
+- **Feature 1**: Validation: Ensure non-overlapping slots, valid room details, and user inputs.
+- **Feature 2**: Error Handling: Provide informative error messages for conflicts and validation issues.
+
+### Security Features
+
+- **Feature 1**: Authentication: User login, registration, token-based session management.
+- **Feature 2**: Authorization: Role-based access control for admin/user actions.
+
+### Additional Features
+
+- **Feature 1**: Booking confirmations, updates, cancellations
+- **Feature 2**: Efficient database operations
+- **Feature 3**: Handle increasing users, rooms, slots, and bookings efficiently
+
 - Additional features as necessary.
 
 ## Technology Stack
@@ -81,4 +109,13 @@
    http://localhost:5000/
    ```
 6. **All the routes to show**
-   - upcoming.............
+   - /api/auth/signup
+   - /api/auth/login
+   - /api/rooms (for create rooms and fetch all rooms)
+   - /api/rooms/:id (Fetch specific booking data , Delete and update)
+   - /api/slots
+   - /api/slots/availability
+   - /api/slots/availability?date=2024-06-15&roomId=60d9c4e4f3b4b544b8b8d1c5
+   - /api/bookings (give booking and fetch all bookings)
+   - /api/my-bookings
+   - /api/bookings/:id (for update and delete)

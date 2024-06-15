@@ -5,6 +5,10 @@ import { bookingController } from './booking.controller';
 
 const router = express.Router();
 // /my-bookings(GET)
-router.get('/', auth(USER_ROLE.user), bookingController.getMybookings);
+router.get(
+  '/',
+  auth(USER_ROLE.admin, USER_ROLE.user),
+  bookingController.getMybookings,
+);
 
 export const myBookingRoutes = router;

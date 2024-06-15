@@ -30,7 +30,10 @@ const getAllBookingFromDb = async () => {
   const result = await Booking.find()
     .populate('room')
     .populate('slots')
-    .populate('user');
+    .populate({
+      path: 'user',
+      select: '-password',
+    });
   return result;
 };
 
