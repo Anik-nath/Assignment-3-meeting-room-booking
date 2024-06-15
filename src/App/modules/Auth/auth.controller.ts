@@ -3,6 +3,7 @@ import { catchAsync } from '../../utils/catchAsync';
 import { sendResponse } from '../../utils/sendResponse';
 import { authServices } from './auth.service';
 import config from '../../config';
+import { hidePassword } from './hidePasswordFromClient';
 
 const loginController = catchAsync(async (req, res) => {
   const result = await authServices.loginUser(req.body);
@@ -18,7 +19,7 @@ const loginController = catchAsync(async (req, res) => {
     success: true,
     message: 'User is logged in succesfully!',
     token: accessToken,
-    data: user,
+    data: hidePassword(user),
   });
 });
 
