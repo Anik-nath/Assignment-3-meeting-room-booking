@@ -6,9 +6,14 @@
 
 - [About the Project](#about-the-project)
 - [Features](#features)
+  - [Admin Features](#admin-features)
+  - [User Features](#user-features)
+  - [Validation and Error Handling](#validation-and-error-handling)
+  - [Security Features](#security-features)
+  - [Additional Features](#additional-features)
 - [Technology Stack](#technology-stack)
 - [Setup Instructions](#setup-instructions)
-- [All routes](#all-routes)
+- [All Routes](#all-routes)
 
 ## About the Project
 
