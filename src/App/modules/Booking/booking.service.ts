@@ -1,5 +1,6 @@
 import MeetingRoom from '../Rooms/rooms.model';
 import Slot from '../Slot/slot.model';
+import User from '../User/user.model';
 import { TBooking } from './booking.interface';
 import Booking from './booking.model';
 
@@ -53,11 +54,16 @@ const deleteBookingFromDB = async (id: string) => {
   );
   return result;
 };
-const getMyBookingFromDb = async () => {
-  const result = await Booking.find()
+
+const getMyBookingFromDb = async (userEmail: string) => {
+  const user = await User.findOne({ email: userEmail });
+  if (!user) {
+    throw new Error('Your are unauthorized!');
+  }
+  const result = await Booking.find({ user: user._id })
     .populate('room')
     .populate('slots')
-    .populate('user');
+
   return result;
 };
 

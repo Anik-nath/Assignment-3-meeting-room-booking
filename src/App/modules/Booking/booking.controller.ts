@@ -63,14 +63,16 @@ const deleteBooking = catchAsync(async (req: Request, res: Response) => {
 });
 
 const getMybookings = catchAsync(async (req: Request, res: Response) => {
-  const result = await bookingServices.getMyBookingFromDb();
+  const userEmail = req.user?.userEmail;
+  const result = await bookingServices.getMyBookingFromDb(userEmail);
   sendResponse(res, {
     success: true,
     statusCode: 200,
-    message: 'Bookings retrieved successfully',
+    message: 'User bookings retrieved successfully',
     data: result,
   });
 });
+
 export const bookingController = {
   booking,
   getAllbookings,

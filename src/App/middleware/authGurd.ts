@@ -9,18 +9,19 @@ import User from '../modules/User/user.model';
 
 const auth = (...requiredRoles: TUserRole[]) => {
   return catchAsync(async (req: Request, res: Response, next: NextFunction) => {
-    const token = req.headers.authorization;
-    // token check
-    if (!token) {
+    const authHeaders = req.headers.authorization;
+    if (!authHeaders || !authHeaders.startsWith('Bearer ')) {
       throw new AppError(httpStatus.UNAUTHORIZED, 'You are not authorized!');
     }
+    const token = authHeaders.split(' ')[1];
+    // Verify token
     const decoded = jwt.verify(
       token,
       config.jwt_access_secret as string,
     ) as JwtPayload;
-
-    const { role, userEmail } = decoded;
     // console.log(decoded);
+    const { role, userEmail } = decoded;
+
     // check user exist or not
     const user = await User.isUserExistsByCustomId(userEmail);
     if (!user) {

@@ -26,7 +26,5 @@ router.put(
   validateRequest(UpdateBookingValidationSchema),
   bookingController.updateBooking,
 );
-// /my-bookings(GET)
-router.get('/', bookingController.getMybookings);
 
 export const bookingRoutes = router;
