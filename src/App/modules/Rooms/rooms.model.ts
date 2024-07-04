@@ -36,6 +36,17 @@ const meetingRoomSchema = new Schema<TMeetingRoom>(
   { versionKey: false },
 );
 
+meetingRoomSchema.pre('save', async function (next) {
+  // eslint-disable-next-line @typescript-eslint/no-this-alias
+  const room = this;
+  const existingRoom = await MeetingRoom.findOne({ roomNo: room.roomNo });
+  if (existingRoom) {
+    const error = new Error('RoomNo already exists!');
+    return next(error);
+  }
+  next();
+});
+
 const MeetingRoom = model('MeetingRoom', meetingRoomSchema);
 
 export default MeetingRoom;
