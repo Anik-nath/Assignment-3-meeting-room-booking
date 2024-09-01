@@ -15,7 +15,7 @@ app.use('/api', router);
 
 // test route
 const test = (req: Request, res: Response) => {
-  res.send('Assignment-3 Meeting-room-booking system Running');
+  res.send('Assignment-3 Mechanical Keyboard Shop Server');
 };
 app.get('/', test);
 // globar error handler

@@ -2,6 +2,10 @@ import { Types } from 'mongoose';
 import { TSlot } from './slot.interface';
 import Slot from './slot.model';
 
+const getAllSlots = async () => {
+  const result = await Slot.find();
+  return result;
+};
 const createSlotsIntoDb = async (payload: TSlot[]) => {
   const result = await Slot.insertMany(payload);
   return result;
@@ -24,8 +28,18 @@ const getAvailableSlotFromDb = async (date: string, roomId: string) => {
   }).populate('room');
   return result;
 };
+const deleteSlotFromDb = async (id: string) => {
+  const result = await Slot.findByIdAndUpdate(
+    { _id: id },
+    { isDeleted: true },
+    { new: true },
+  );
+  return result;
+};
 export const slotsServices = {
+  getAllSlots,
   createSlotsIntoDb,
   getAllSlotFromDb,
   getAvailableSlotFromDb,
+  deleteSlotFromDb
 };

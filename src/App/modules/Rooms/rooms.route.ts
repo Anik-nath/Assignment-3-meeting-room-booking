@@ -16,11 +16,7 @@ router.post(
   MeetingRoomControllers.createMeetingRooom,
 );
 // get all rooms
-router.get(
-  '/',
-  auth(USER_ROLE.admin, USER_ROLE.user),
-  MeetingRoomControllers.getAllMeetingRooms,
-);
+router.get('/', MeetingRoomControllers.getAllMeetingRooms);
 // get single rooms
 router.get(
   '/:roomId',

@@ -4,7 +4,6 @@ import { MeetingRoomServices } from './rooms.service';
 import { sendResponse } from '../../utils/sendResponse';
 
 const createMeetingRooom = catchAsync(async (req: Request, res: Response) => {
-  
   const result = await MeetingRoomServices.createRoom(req.body);
   sendResponse(res, {
     success: true,

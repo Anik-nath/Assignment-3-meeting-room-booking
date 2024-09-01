@@ -18,6 +18,24 @@ const createSlots = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const getSlots = catchAsync(async (req: Request, res: Response) => {
+  const result = await slotsServices.getAllSlots();
+  if (result.length === 0) {
+    sendResponse(res, {
+      success: false,
+      statusCode: 404,
+      message: 'No Data Found',
+      data: result,
+    });
+  }
+  sendResponse(res, {
+    success: true,
+    statusCode: 200,
+    message: 'All Slots retrieved successfully',
+    data: result,
+  });
+});
+
 const getAvailableSlots = catchAsync(async (req: Request, res: Response) => {
   const { date, roomId } = req.query;
   if (date && roomId) {
@@ -57,8 +75,19 @@ const getAvailableSlots = catchAsync(async (req: Request, res: Response) => {
     });
   }
 });
-
+const deleteSlot = catchAsync(async (req: Request, res: Response) => {
+  const {slotId } = req.params;
+  const result = await slotsServices.deleteSlotFromDb(slotId);
+  sendResponse(res, {
+    success: true,
+    statusCode: 200,
+    message: 'Slot deleted successfully',
+    data: result,
+  });
+});
 export const slotsController = {
+  getSlots,
   createSlots,
   getAvailableSlots,
+  deleteSlot
 };
