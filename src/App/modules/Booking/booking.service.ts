@@ -1,3 +1,4 @@
+import initiatePayment from '../Payment/payment.utils';
 import MeetingRoom from '../Rooms/rooms.model';
 import Slot from '../Slot/slot.model';
 import User from '../User/user.model';
@@ -10,21 +11,39 @@ const createBooking = async (payload: TBooking) => {
     throw new Error('You are not authorized!');
   }
   const booking = await Booking.create(payload);
+  const transactionId = `TNM-${Date.now()}`;
   //save total amount
   const room = await MeetingRoom.findById(payload.room);
+  let totalAmount = 0;
   if (room) {
-    const totalAmount = payload.slots.length * room.pricePerSlot;
+    totalAmount = payload.slots.length * room.pricePerSlot;
     booking.totalAmount = totalAmount;
+    booking.transactionId = transactionId;
     await booking.save();
   }
   //set isBooked true
   await Slot.updateMany({ _id: { $in: payload.slots } }, { isBooked: true });
+  // amarpay
+  const paymentResponse = await initiatePayment(totalAmount, transactionId);
 
   const result = await (
     await (await booking.populate('slots')).populate('room')
   ).populate({ path: 'user', select: '-password' });
+  return { result, paymentResponse };
+};
+
+// confirm payment services
+const confirmationServices = async (transactionId: string) => {
+  const result = await Booking.findOneAndUpdate(
+    { transactionId },
+    { isPayment: true },
+    {
+      new: true,
+    },
+  );
   return result;
 };
+
 // get all the bookings
 const getAllBookingFromDb = async () => {
   const result = await Booking.find()
@@ -81,4 +100,5 @@ export const bookingServices = {
   updateBookingFromDB,
   deleteBookingFromDB,
   getMyBookingFromDb,
+  confirmationServices,
 };

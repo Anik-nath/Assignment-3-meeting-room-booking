@@ -7,6 +7,7 @@ import {
 import { bookingController } from './booking.controller';
 import auth from '../../middleware/authGurd';
 import { USER_ROLE } from '../User/user.const';
+import { paymentController } from '../Payment/payment.controller';
 
 const router = express.Router();
 
@@ -34,5 +35,6 @@ router.put(
   validateRequest(UpdateBookingValidationSchema),
   bookingController.updateBooking,
 );
-
+// payment route to confirm payment
+router.post('/confirmation', paymentController.confirmController);
 export const bookingRoutes = router;

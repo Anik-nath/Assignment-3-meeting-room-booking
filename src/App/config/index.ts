@@ -13,4 +13,5 @@ export default {
   NODE_ENV: process.env.NODE_ENV,
   jwt_refresh_secret: process.env.JWT_REFRESH_TOKEN,
   jwt_refresh_expires_in: process.env.JWT_ACCESS_EXPIRES_IN,
+  payment_url: process.env.PAYMENT_URL,
 };

@@ -32,6 +32,14 @@ export const bookingSchema = new Schema<TBooking>(
       type: Boolean,
       default: false,
     },
+    isPayment: {
+      type: Boolean,
+      default: false,
+    },
+    transactionId: {
+      type: String,
+      default: 'NexusTID',
+    },
   },
   { versionKey: false },
 );
