@@ -24,4 +24,5 @@ router.post(
   validateRequest(authValidations.refreshTokenValidationSchema),
   authController.AuthRefreshToken,
 );
+router.put('/users/:userID', userController.makeAdmin);
 export const UserRoutes = router;

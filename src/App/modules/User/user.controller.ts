@@ -34,7 +34,20 @@ const getAllUsers = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
+
+// make admin
+const makeAdmin = catchAsync(async (req: Request, res: Response) => {
+  const { userID } = req.params;
+  const result = await userServices.MakeAdminIntoDb(userID, req.body);
+  sendResponse(res, {
+    success: true,
+    statusCode: 200,
+    message: 'Make  updated successfully',
+    data: result,
+  });
+});
 export const userController = {
   signup,
   getAllUsers,
+  makeAdmin,
 };

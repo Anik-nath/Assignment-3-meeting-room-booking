@@ -23,4 +23,15 @@ const gelAllUsersFromDb = async () => {
   const result = await User.find();
   return result;
 };
-export const userServices = { createUserFormDb, gelAllUsersFromDb,loginUserIntoDb };
+const MakeAdminIntoDb = async (id: string, payload: Partial<TUser>) => {
+  const result = await User.findByIdAndUpdate({ _id: id }, payload, {
+    new: true,
+  });
+  return result;
+};
+export const userServices = {
+  createUserFormDb,
+  gelAllUsersFromDb,
+  loginUserIntoDb,
+  MakeAdminIntoDb,
+};
