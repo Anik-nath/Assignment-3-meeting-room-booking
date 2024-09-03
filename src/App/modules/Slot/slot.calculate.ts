@@ -27,6 +27,7 @@ export const calculateSlots = (
       startTime: minutesToTime(calculateSlotStartMinutes),
       endTime: minutesToTime(calculateSlotEndMinutes),
       isBooked: false,
+      isDeleted: false,
     });
   }
 
