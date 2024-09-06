@@ -1,15 +1,15 @@
 import axios from 'axios';
 import config from '../../config';
 
- const initiatePayment = async (totalAmount: number, transactionId : string) => {
+const initiatePayment = async (totalAmount: number, transactionId: string) => {
   const response = await axios.post(config.payment_url as string, {
     type: 'json',
     store_id: process.env.STORE_ID,
     signature_key: process.env.SIGNATURE_KEY,
     tran_id: transactionId,
-    success_url: `http://localhost:5000/api/bookings/confirmation?transactionID=${transactionId}`,
-    fail_url: 'http://localhost:5173/fail',
-    cancel_url: 'http://localhost:5173/cancel',
+    success_url: `https://assignment-3-two-tawny.vercel.app/api/bookings/confirmation?transactionID=${transactionId}`,
+    fail_url: 'https://assignment-3-two-tawny.vercel.app/fail',
+    cancel_url: 'https://assignment-3-two-tawny.vercel.app/cancel',
     amount: totalAmount.toString(),
     currency: 'BDT',
     desc: 'Merchant Registration Payment',
