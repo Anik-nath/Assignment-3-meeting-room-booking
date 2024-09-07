@@ -14,4 +14,6 @@ export default {
   jwt_refresh_secret: process.env.JWT_REFRESH_TOKEN,
   jwt_refresh_expires_in: process.env.JWT_ACCESS_EXPIRES_IN,
   payment_url: process.env.PAYMENT_URL,
+  email_user: process.env.EMAIL_USER,
+  email_pass: process.env.EMAIL_PASS,
 };

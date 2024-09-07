@@ -10,7 +10,7 @@ const confirmController = async (req: Request, res: Response) => {
     // res.send(`<div>
     //   Payment Successful! Your transaction ID: ${transactionId}
     //   </div>`);
-    res.redirect('http://localhost:5173/mybookings');
+    res.redirect('https://nexusmeet.netlify.app/mybookings');
   } else {
     res.status(404).send(`<div>Transaction not found!</div>`);
   }
