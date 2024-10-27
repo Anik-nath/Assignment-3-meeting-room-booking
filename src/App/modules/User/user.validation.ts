@@ -6,10 +6,7 @@ const userValidationSchema = z.object({
     name: z
       .string()
       .min(1, 'Name is required')
-      .max(20)
-      .refine((value) => /^[A-Z]/.test(value), {
-        message: 'Name must start with capital letter',
-      }),
+      .max(20),
     email: z.string().email('Invalid email format'),
     password: z
       .string({ invalid_type_error: 'Password must be string' })
